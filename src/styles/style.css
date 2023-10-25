@@ -1,0 +1,280 @@
+@import './variables.css';
+
+.container {
+  position: relative;
+  width: 1280px;
+  height: 720px;
+  margin: 0 auto;
+  padding: 0;
+
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.content__video {
+  width: 100%;
+}
+
+.content__banner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+
+  position: absolute;
+  top: 220px;
+  right: 0;
+
+  width: 251px;
+  padding: 10px;
+
+  background-color: var(--blue);
+  text-align: center;
+}
+
+.banner__header {
+  margin-top: 20px;
+  font-size: 16px;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.banner__img {
+  width: 125px;
+  height: 125px;
+}
+
+.banner__text {
+  margin: 0;
+  font-size: 14px;
+}
+
+.banner__btn {
+  width: 156px;
+  height: 52px;
+  padding: 16px;
+
+  color: var(--blue);
+  font-weight: 500;
+  background-color: var(--dark);
+  border: none;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.banner__btn:hover {
+  opacity: 0.5;
+  transition: 0.3s;
+}
+
+.content__promo {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-image: url('../assets/img-promo.png');
+}
+
+.promo__left {
+  width: 380px;
+  height: 100%;
+  padding: 40px 24px;
+
+  background-color: var(--blue);
+  font-size: 14px;
+  text-align: center;
+}
+
+.promo__header {
+  width: 100%;
+
+  font-size: 26px;
+  font-weight: 400;
+}
+
+.promo__input {
+  width: 100%;
+
+  font-size: 32px;
+  font-weight: 700;
+  background: transparent;
+  border: none;
+  text-align: center;
+}
+
+.promo__text {
+  width: 100%;
+}
+
+.numpad {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+
+  padding: 0;
+
+  list-style: none;
+}
+
+.numpad__item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 55px;
+  height: 52px;
+  padding: 12px 30px;
+
+  font-weight: 500;
+  text-transform: uppercase;
+
+  border: 2px solid var(--dark);
+  cursor: pointer;
+}
+
+.numpad__item-remove {
+  width: 185px;
+}
+
+.numpad__item:hover,
+.numpad__item:active {
+  color: var(--white);
+  background-color: var(--dark);
+  transition: 0.3s;
+}
+
+.promo__agreement {
+  margin-top: 23px;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.checkbox__input {
+  -webkit-appearance: none;
+  appearance: none;
+  position: absolute;
+}
+
+.checkbox__label {
+  margin-left: 70px;
+  margin-top: 5px;
+  font-size: 14px;
+  color: var(--light-grey);
+  cursor: pointer;
+  text-align: left;
+}
+
+.checkbox__label:before {
+  position: absolute;
+  top: 0;
+  left: 10px;
+
+  display: block;
+  content: url('../assets/checkpoint.svg');
+}
+
+.checkbox__input:checked + .checkbox__label:before {
+  position: absolute;
+  top: 0;
+  left: 10px;
+
+  display: block;
+  content: url('../assets/checkpoint-checked.svg');
+}
+
+.promo__btn {
+  width: 100%;
+  height: 52px;
+  padding: 16px 19px;
+  margin-top: 25px;
+
+  color: var(--grey);
+  background-color: transparent;
+  font-weight: 500;
+  border: 1px solid var(--grey);
+  text-transform: uppercase;
+}
+
+.promo__btn-active {
+  color: var(--white);
+  background-color: var(--dark);
+}
+
+.promo__btn-active:hover {
+  opacity: 0.7;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.promo__feedback {
+  margin-top: 33px;
+}
+
+.invalid {
+  color: var(--red);
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.promo__close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+}
+
+.promo__close:hover {
+  opacity: 0.7;
+  transition: 0.3s;
+}
+
+.promo__qr {
+  position: absolute;
+  bottom: 40px;
+  right: 40px;
+
+  display: flex;
+  gap: 10px;
+
+  color: var(--white);
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.promo__qr p {
+  width: 194px;
+  text-align: right;
+}
+
+.promo__qr img {
+  width: 110px;
+  height: 110px;
+}
+
+.promo__left-submit {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  width: 380px;
+  height: 722px;
+  padding: 40px 24px;
+
+  background-color: var(--blue);
+  font-size: 14px;
+  text-align: center;
+}
+
+.promo__header-submit {
+  margin: 0 48px;
+  font-size: 32px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.promo__text-submit {
+  font-size: 14px;
+}
