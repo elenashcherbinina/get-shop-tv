@@ -1,4 +1,5 @@
-import React, { useState, useRef, useEffect } from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useState, useEffect } from 'react';
 import InputMask from 'react-input-mask';
 
 import validate from '../utils/validation';
@@ -9,12 +10,11 @@ const Numpad = ({ setSubmit }) => {
   const [phone, setPhone] = useState('');
   const [checked, setChecked] = useState(false);
   const [isValid, setIsValid] = useState(true);
-  const maskRef = useRef(null);
 
   const currentInputClass = isValid ? 'promo__input' : 'promo__input invalid';
 
   const handleClick = (e) => {
-    if (phone.length >= 10) {
+    if (phone.length === 10) {
       return;
     }
     setPhone(phone + e.target.value);
@@ -26,8 +26,24 @@ const Numpad = ({ setSubmit }) => {
     setChecked(false);
   };
 
+  const handleKeyDown = (e) => {
+    if (e.code === 'Backspace') {
+      setPhone(phone.slice(0, -1));
+      return;
+    }
+    const num = e.code.slice(e.code.length - 1);
+    setPhone(phone + num);
+  };
+
   useEffect(() => {
-    if (phone.length === 10) {
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [handleKeyDown, phone]);
+
+  useEffect(() => {
+    if (phone.length >= 10) {
       validate(phone).then((data) => {
         if (data.valid) {
           setIsValid(true);
@@ -46,9 +62,10 @@ const Numpad = ({ setSubmit }) => {
         value={phone}
         onChange={(e) => setPhone(e.target.value)}
         mask='+7(999)999-99-99'
-        ref={maskRef}
         alwaysShowMask={true}
         type='tel'
+        readOnly
+        required
       />
       <p className='promo__text'>и с Вами свяжется наш менеждер для дальнейшей консультации</p>
       <div className='promo__numpad'>
