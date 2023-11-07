@@ -1,46 +1,40 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react';
 import InputMask from 'react-input-mask';
+import classNames from 'classnames';
 
 import validate from '../utils/validation';
+import useKeys from '../hooks/useKeys';
 import SubmitBtn from './SubmitBtn';
 
 const Numpad = ({ setSubmit }) => {
-  const buttons = [1, 2, 3, 4, 5, 6, 7, 8, 9, 'cтереть', 0];
+  const buttons = ['1', '2', '3', '4', '5', '6', '7', '8', '9', 'стереть', '0'];
   const [phone, setPhone] = useState('');
+  console.log('phone', phone);
   const [checked, setChecked] = useState(false);
   const [isValid, setIsValid] = useState(true);
+  const focused = useKeys('1', phone, setPhone);
+  console.log('focused', focused);
 
   const currentInputClass = isValid ? 'promo__input' : 'promo__input invalid';
 
-  const handleClick = (e) => {
-    if (phone.length === 10) {
+  const handleClick = (value) => {
+    if (value === 'стереть') {
+      setPhone('');
+      setIsValid(true);
+      setChecked(false);
+    } else if (phone.length === 10) {
       return;
+    } else {
+      setPhone(phone + value);
     }
-    setPhone(phone + e.target.value);
   };
 
-  const handleRemove = () => {
-    setPhone('');
-    setIsValid(true);
-    setChecked(false);
-  };
-
-  const handleKeyDown = (e) => {
-    if (e.code === 'Backspace') {
-      setPhone(phone.slice(0, -1));
-      return;
-    }
-    const num = e.code.slice(e.code.length - 1);
-    setPhone(phone + num);
-  };
-
-  useEffect(() => {
-    window.addEventListener('keydown', handleKeyDown);
-    return () => {
-      window.removeEventListener('keydown', handleKeyDown);
-    };
-  }, [handleKeyDown, phone]);
+  // useEffect(() => {
+  //   window.addEventListener('keydown', handleKeyDown);
+  //   return () => {
+  //     window.removeEventListener('keydown', handleKeyDown);
+  //   };
+  // }, [handleKeyDown, phone]);
 
   useEffect(() => {
     if (phone.length >= 10) {
@@ -71,20 +65,14 @@ const Numpad = ({ setSubmit }) => {
       <div className='promo__numpad'>
         <ul className='numpad'>
           {buttons.map((el) => {
-            if (el !== 'cтереть') {
-              return (
-                <li onClick={handleClick} className='numpad__item' key={el} value={el}>
-                  {el}
-                </li>
-              );
-            }
+            const currentNumClass = classNames({
+              numpad__item: true,
+              'numpad__item-remove': el === 'стереть',
+              focused: el === focused,
+            });
+
             return (
-              <li
-                onClick={handleRemove}
-                className='numpad__item numpad__item-remove'
-                key={el}
-                value={el}
-              >
+              <li onClick={() => handleClick(el)} className={currentNumClass} key={el} value={el}>
                 {el}
               </li>
             );

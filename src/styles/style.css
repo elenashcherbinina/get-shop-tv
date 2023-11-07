@@ -144,6 +144,12 @@
   transition: 0.3s;
 }
 
+.focused {
+  color: var(--white);
+  background-color: var(--dark);
+  transition: 0.3s;
+}
+
 .promo__agreement {
   margin-top: 23px;
   position: relative;

@@ -1,0 +1,81 @@
+const getActionMap = (phone, setPhone) => ({
+  1: {
+    onClick: () => setPhone(phone + '1'),
+    up: 'remove',
+    down: '4',
+    left: '0',
+    right: '2',
+  },
+  2: {
+    onClick: () => setPhone(phone + '2'),
+    up: 'remove',
+    down: '5',
+    left: '1',
+    right: '3',
+  },
+  3: {
+    onClick: () => setPhone(phone + '3'),
+    up: '0',
+    down: '6',
+    left: '2',
+    right: '4',
+  },
+  4: {
+    onClick: () => setPhone(phone + '4'),
+    up: '1',
+    down: '7',
+    left: '3',
+    right: '5',
+  },
+  5: {
+    onClick: () => setPhone(phone + '5'),
+    up: '2',
+    down: '8',
+    left: '4',
+    right: '6',
+  },
+  6: {
+    onClick: () => setPhone(phone + '6'),
+    up: '3',
+    down: '9',
+    left: '5',
+    right: '7',
+  },
+  7: {
+    onClick: () => setPhone(phone + '7'),
+    up: '4',
+    down: 'remove',
+    left: '6',
+    right: '8',
+  },
+  8: {
+    onClick: () => setPhone(phone + '8'),
+    up: '5',
+    down: 'remove',
+    left: '7',
+    right: '9',
+  },
+  9: {
+    onClick: () => setPhone(phone + '9'),
+    up: '6',
+    down: '0',
+    left: '8',
+    right: 'remove',
+  },
+  0: {
+    onClick: () => setPhone(phone + '0'),
+    up: '9',
+    down: '3',
+    left: 'remove',
+    right: '1',
+  },
+  remove: {
+    onClick: () => setPhone(''),
+    up: '7',
+    down: '1',
+    left: '9',
+    right: '0',
+  },
+});
+
+export default getActionMap;
